@@ -1,9 +1,16 @@
 <h1>{{ question.question_text }}</h1>
-
+<li>RESPUESTAS</li>
 <ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+<!--el (c) itera y muestra (clave(opcion)-resultado(true o false)) -->
+{% for opcion,resultado in c.items %} 
+<!-- {{ opcion.correcto}}-->
+<!--doble llave imprime -->
+	<li>{{ opcion }} /.Acertaste?--> {{ resultado}} {% if opcion.correcto %}
+<p style="color:green"> correcto </p>
+		{%else%}
+<p style="color:red"> incorrecto </p>
+		{%endif%}
+	</li>
 {% endfor %}
 </ul>
-
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<a href ="{% url 'polls:detail' question.id %}">Volver a responder? <a/>
